@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
-import {Store, combineReducers, createStore} from 'redux'
+import {combineReducers, createStore} from 'redux'
 import {loginstate} from './Reducers/loginstate'
 
 const rootreducer = combineReducers(
