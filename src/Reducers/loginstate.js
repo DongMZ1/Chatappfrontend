@@ -1,8 +1,10 @@
-export const loginstate = (state ={
-    username: null,
-    token: null,
-    count: 1
-}, action) =>{
+const initstate = {
+        username: null,
+        token: null,
+        count: 1
+}
+
+export const loginstate = (state = initstate, action) =>{
    switch(action.type){
        case 'login':
            return {
@@ -13,8 +15,9 @@ export const loginstate = (state ={
         case 'add':
             return {
                 ...state,
-                count: count + 1
-            }
+                count: state.count +1
+            };
+        default:
+                return {...state};
    }
-
 }
