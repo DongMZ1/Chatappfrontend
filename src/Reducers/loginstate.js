@@ -1,7 +1,6 @@
 const initstate = {
         username: null,
         token: null,
-        count: 1,
         islogin: false
 }
 
@@ -14,11 +13,6 @@ export const loginstate = (state = initstate, action) =>{
                token: action.token,
                islogin: action.islogin
            };
-        case 'add':
-            return {
-                ...state,
-                count: state.count +1
-            };
         default:
                 return {...state};
    }
