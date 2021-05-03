@@ -1,5 +1,5 @@
 import React from 'react'
-const Usersignuppage = () =>{
+const Usersignuppage = ({loginorsignup}) =>{
 
     return(
         <>

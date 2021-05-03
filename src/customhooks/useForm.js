@@ -1,11 +1,23 @@
-import react, {useState, useCallback} from 'react'
+import react, {useReducer, useCallback} from 'react'
 
-
+const reducer = (state, action) =>{
+   
+        return{
+            ...state,
+            [action.name] : action.value
+       }
+    
+}
 export const useForm = (initialstate) => {
-   const [state, setstate] = useState(initialstate);
+   const [state, dispatch] = useReducer(reducer, initialstate);
    const handleonchange = useCallback(
        (e) => {
-            setstate([...state, {[e.target.name]: e.target.value}]);
+            dispatch(
+                {
+                 name: e.target.name,
+                 value: e.target.value
+                }
+            );
        }, []
    )
 
