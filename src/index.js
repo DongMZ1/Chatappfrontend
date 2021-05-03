@@ -4,7 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
-import {combineReducers, createStore} from 'redux'
+import {combineReducers, createStore, applyMiddleware} from 'redux'
+import logger from 'redux-logger'
 import {loginstate} from './Reducers/loginstate'
 
 const rootreducer = combineReducers(
@@ -13,7 +14,7 @@ const rootreducer = combineReducers(
   }
 )
 
-const store = createStore(rootreducer);
+const store = createStore(rootreducer, applyMiddleware(logger));
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
