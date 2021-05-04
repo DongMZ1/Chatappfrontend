@@ -2,7 +2,7 @@ import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useForm} from '../customhooks/useForm'
 import {loginvalidator} from '../validator/formvalidator'
-const Userloginpage = ({loginorsignup}) =>{
+const Userloginpage = ({loginorsignup, setloginorsignup}) =>{
     const [formstate, handleonchange] = useForm([]);
     const dispatch = useDispatch();
     const [formerror, formisvalid] = loginvalidator(formstate);
@@ -35,7 +35,7 @@ const Userloginpage = ({loginorsignup}) =>{
             && <div className="form-text">{formerror.password}</div>}
         </div>
         <button onClick={handlelogin} style={{marginRight: '5%'}} type="submit" className="btn btn-primary">Login</button>
-        <button className="btn btn-primary">Do not have an account ? Sign up</button>
+        <button onClick={() => setloginorsignup(false)} className="btn btn-primary">Do not have an account ? Sign up</button>
       </form>
 
             </>

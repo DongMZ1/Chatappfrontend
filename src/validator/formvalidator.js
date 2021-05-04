@@ -39,9 +39,13 @@ export const loginvalidator = (values) => {
       errors.password = "Password must be more than 4 characters";
       isvalid = false
     }
-    if(values.password !== values.passwordrepeat){
+    if(values.password !== values.password1){
       errors.password = "Password Must Be Matching"
       isvalid =false
+    }
+    if(!values.username){
+      errors.username = "User Name cannot be empty"
+      isvalid = false;
     }
 
     return [errors, isvalid];
