@@ -2,6 +2,7 @@ import react, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {io} from "socket.io-client";
 import {Button} from 'react-bootstrap'
+import Sidebar from '../components/Sidebar'
 
 const Homepageafterlogin = () =>{
     const [message, setmessage] = useState();
@@ -12,7 +13,7 @@ const Homepageafterlogin = () =>{
           setmessage(data);
         });
       
-      }, []
+      }
         )
     
         const sendmessage = () =>{
@@ -21,8 +22,7 @@ const Homepageafterlogin = () =>{
 
    return(
    <>
-   The message is {message}
-    <Button onClick={sendmessage}>Click to send message</Button>
+   <Sidebar />
    </>
    )
 }

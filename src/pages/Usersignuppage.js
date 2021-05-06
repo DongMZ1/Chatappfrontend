@@ -30,12 +30,6 @@ const Usersignuppage = ({loginorsignup, setloginorsignup}) =>{
             && <div id="emailHelp" className="form-text">{formerror.username}</div>}
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-          <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={handleonchange} />
-          { !formisvalid
-            && <div id="emailHelp" className="form-text">{formerror.email}</div>}
-        </div>
-        <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
           <input type="password" name="password" className="form-control" id="exampleInputPassword1" onChange={handleonchange} />
           { !formisvalid
