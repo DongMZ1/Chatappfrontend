@@ -8,13 +8,15 @@ const Auth = () =>{
     const [formerror, formisvalid] = loginvalidator(formstate);
     const handlelogin = async () =>{
         
-        const response = await fetch('https://localhost:5000/api/user/login', {
+        const response = await fetch('http://localhost:5000/api/user/login', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json;charset=utf-8'},
-            body: JSON.stringify({username: formstate.username})
+            body: JSON.stringify(formstate),
+            headers: {'Content-Type': 'application/json'},
         });
 
         const responsedata = await response.json();
+        console.log(responsedata);
+        
         dispatch(
             {
                 type: 'login',
@@ -22,6 +24,7 @@ const Auth = () =>{
                 islogin: true,
             }
         );
+        
     }
     return(
         
