@@ -11,11 +11,16 @@ const Homepageafterlogin = () => {
   const [messagetosend, setmessagetosend] = useState();
   const dispatch = useDispatch();
   const socket = io("localhost:5000");
+  const choosefriend = () =>{
+      socket.emit('room', 1);
+  }
   useEffect(() => {
     socket.on("message", (data) => {
       setmessage(data);
     });
   });
+
+  
 
   return (
     <>

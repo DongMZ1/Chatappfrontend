@@ -1,6 +1,4 @@
 const initstate = {
-        username: null,
-        token: null,
         islogin: false
 }
 
@@ -9,8 +7,7 @@ export const loginstate = (state = initstate, action) =>{
        case 'login':
            return {
                ...state,
-               username: action.username,
-               token: action.token,
+               user: action.user,
                islogin: action.islogin
            };
         default:
