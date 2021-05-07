@@ -8,6 +8,7 @@ import Chatcontent from '../components/Chatcontent'
 
 const Homepageafterlogin = () => {
   const [message, setmessage] = useState();
+  const [messagetosend, setmessagetosend] = useState();
   const dispatch = useDispatch();
   const socket = io("localhost:5000");
   useEffect(() => {
@@ -15,10 +16,6 @@ const Homepageafterlogin = () => {
       setmessage(data);
     });
   });
-
-  const sendmessage = () => {
-    socket.emit("message", "frontend works");
-  };
 
   return (
     <>
@@ -32,7 +29,7 @@ const Homepageafterlogin = () => {
         <div className="col-10">
           <Chatcontent />
           <br />
-          <Fixedfooterinput />
+          <Fixedfooterinput setmessagetosend={setmessagetosend} />
         </div>
       </div>
       </div>

@@ -1,11 +1,11 @@
 import React from "react";
 
-const Chatcontent = () => {
+const Chatcontent = ({messagearray}) => {
   return (
     <>
       <div
         style={{
-          height: "200%",
+          height: "450px",
           overflow: "auto",
           border: "8px solid blue",
           padding: "5%",

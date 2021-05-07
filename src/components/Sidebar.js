@@ -1,32 +1,116 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import Addfriend from '../components/Addfriend'
 const Sidebar = () => {
+  const [showaddfriend, setshowaddfriend] = useState(false);
   const dispatch = useDispatch();
   return (
-    <ol class="list-group list-group-numbered">
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subheading</div>
+    <>
+     <Addfriend showaddfriend={showaddfriend} setshowaddfriend={setshowaddfriend} />
+     <button type="button" onClick={()=>setshowaddfriend(true)} className="btn btn-outline-secondary">Add Friends</button>
+     <br />
+     <br />
+    <div style={{ height: "600px",
+          overflow: "auto",
+          border: "2px solid blue"
+          }}>
+      {/**------------------------container-------------------------------- */}
+    <ol className="list-group list-group-numbered">
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
       Cras justo odio
     </div>
-    <span class="badge bg-primary rounded-pill">14</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subheading</div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
       Cras justo odio
     </div>
-    <span class="badge bg-primary rounded-pill">14</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subheading</div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
       Cras justo odio
     </div>
-    <span class="badge bg-primary rounded-pill">14</span>
-  </li>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
+      Cras justo odio
+    </div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
+      Cras justo odio
+    </div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
+      Cras justo odio
+    </div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
+      Cras justo odio
+    </div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
+      Cras justo odio
+    </div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
+      Cras justo odio
+    </div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
+      Cras justo odio
+    </div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
+      Cras justo odio
+    </div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
+      Cras justo odio
+    </div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
+  <ul className="list-group-item d-flex justify-content-between align-items-start">
+    <div className="ms-2 me-auto">
+      <div className="fw-bold">Subheading</div>
+      Cras justo odio
+    </div>
+    <span className="badge bg-primary rounded-pill">14</span>
+  </ul>
 </ol>
+    {/**------------------------end of container-------------------------------- */}
+    </div>
+</>
   );
 };
 
