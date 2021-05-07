@@ -6,8 +6,8 @@ const Auth = () =>{
     const [formstate, handleonchange] = useForm([]);
     const dispatch = useDispatch();
     const [formerror, formisvalid] = loginvalidator(formstate);
-    const handlelogin = async () =>{
-        
+    const handlelogin = async (e) =>{
+        e.preventDefault();
         const response = await fetch('http://localhost:5000/api/user/login', {
             method: 'POST',
             body: JSON.stringify(formstate),
@@ -33,15 +33,15 @@ const Auth = () =>{
             <br />
             <br />
 
-            <div style={{marginLeft:'30%', marginRight:'30%'}}>
+            <form style={{marginLeft:'30%', marginRight:'30%'}}>
         <div className="mb-3">
           <label className="form-label">Username</label>
           <input type="text" name="username" className="form-control" onChange={handleonchange} />
           { !formisvalid
             && <div id="emailHelp" className="form-text">{formerror.username}</div>}
         </div>
-        <button onClick={handlelogin} style={{marginRight: '5%'}} className="btn btn-primary">Login</button>
-      </div>
+        <button onClick={handlelogin} type="submit" style={{marginRight: '5%'}} className="btn btn-primary">Login</button>
+      </form>
 
             </>
         
