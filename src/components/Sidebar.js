@@ -1,9 +1,11 @@
 import React, {useState} from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, useStore } from "react-redux";
 import Addfriend from '../components/Addfriend'
-const Sidebar = () => {
+import Sidebareachfriend from './Sidebareachfriend'
+const Sidebar = ({setselecteduser, selecteduser}) => {
   const [showaddfriend, setshowaddfriend] = useState(false);
   const dispatch = useDispatch();
+  const store = useStore().getState()
   return (
     <>
      <Addfriend showaddfriend={showaddfriend} setshowaddfriend={setshowaddfriend} />
@@ -15,99 +17,8 @@ const Sidebar = () => {
           border: "2px solid blue"
           }}>
       {/**------------------------container-------------------------------- */}
-    <ol className="list-group list-group-numbered">
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-  <ul className="list-group-item d-flex justify-content-between align-items-start">
-    <div className="ms-2 me-auto">
-      <div className="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span className="badge bg-primary rounded-pill">14</span>
-  </ul>
-</ol>
+      {console.log(store.loginstate.user.messages)}
+
     {/**------------------------end of container-------------------------------- */}
     </div>
 </>

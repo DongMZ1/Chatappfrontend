@@ -15,7 +15,6 @@ const Auth = () =>{
         });
 
         const responsedata = await response.json();
-        console.log(responsedata);
         
         dispatch(
             {

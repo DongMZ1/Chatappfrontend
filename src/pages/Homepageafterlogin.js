@@ -9,6 +9,7 @@ import Chatcontent from '../components/Chatcontent'
 const Homepageafterlogin = () => {
   const [message, setmessage] = useState();
   const [messagetosend, setmessagetosend] = useState();
+  const [selecteduser, setselecteduser] = useState();
   const dispatch = useDispatch();
   const socket = io("localhost:5000");
   const choosefriend = () =>{
@@ -29,7 +30,7 @@ const Homepageafterlogin = () => {
       <div className="container">
       <div className="row">
         <div className="col-2">
-          <Sidebar />
+          <Sidebar selecteduser={selecteduser} setselecteduser={setselecteduser} />
         </div>
         <div className="col-10">
           <Chatcontent />
