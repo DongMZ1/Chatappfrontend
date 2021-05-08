@@ -1,6 +1,6 @@
 import React from "react";
 
-const Chatcontent = ({messagearray, selecteduser}) => {
+const Chatcontent = ({selectedusermessages, selecteduser}) => {
   return (
     <>
       <div
@@ -14,6 +14,26 @@ const Chatcontent = ({messagearray, selecteduser}) => {
         {!selecteduser && 'Please select a friend on the left side to start conversation, if you do not have a friend, Please add one'}
         {selecteduser && <>
         {/*start of actual content */}
+
+        {selectedusermessages.map(message => {
+          if(message.whospeak === selecteduser){
+            return <div class="card" style={{width: '60%', float:'left', marginTop:'5px', marginBottom:'5px'}}>
+            <div class="card-body">
+              {message.content}
+            </div>
+                   </div>
+          }else{
+          
+         return <div class="card" style={{width: '60%', float:'right', marginTop:'5px', marginBottom:'5px'}}>
+  <div class="card-body">
+             {message.content}
+  </div>
+         </div>
+          ;
+          }
+        } )}
+
+         
 
 
 

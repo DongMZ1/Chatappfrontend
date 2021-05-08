@@ -31,15 +31,17 @@ const Homepageafterlogin = () => {
       <div className="container">
         <div className="row">
           <div className="col-2">
+
             <Sidebar
               selecteduser={selecteduser}
               setselecteduser={setselecteduser}
               setroom={setroom}
               setselectedusermessages={setselectedusermessages}
             />
+
           </div>
           <div className="col-10">
-            <Chatcontent selecteduser={selecteduser} />
+            <Chatcontent selecteduser={selecteduser} selectedusermessages={selectedusermessages} />
             <br />
             <Fixedfooterinput setmessagetosend={setmessagetosend} />
           </div>

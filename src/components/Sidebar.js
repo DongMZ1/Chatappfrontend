@@ -32,7 +32,7 @@ const Sidebar = ({setselectedusermessages, setselecteduser, selecteduser, setroo
             room={conversation.room}
             setselecteduser={setselecteduser}
             selecteduser={selecteduser}
-            username={conversation.friend}
+            friendname={conversation.friend}
           />
         ))}
 
