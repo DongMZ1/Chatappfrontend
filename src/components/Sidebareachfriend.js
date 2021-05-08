@@ -1,9 +1,12 @@
 import React, {useEffect} from 'react'
 
-const Sidebareachfriend = ({username, setselecteduser, selecteduser}) =>{
+const Sidebareachfriend = ({setroom, room, username, setselecteduser, selecteduser, setselectedusermessages}) =>{
 
     const selectcurrentfriend = () =>{
         setselecteduser(username);
+        setroom(room);
+        //need to init message by fetch
+        setselectedusermessages([]);
     }
     return <>
        <button style={{width:'100%'}} onClick={selectcurrentfriend} className="list-group-item d-flex justify-content-between align-items-start">
