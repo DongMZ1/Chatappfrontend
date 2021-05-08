@@ -17,15 +17,15 @@ const Chatcontent = ({selectedusermessages, selecteduser}) => {
 
         {selectedusermessages.map(message => {
           if(message.whospeak === selecteduser){
-            return <div class="card" style={{width: '60%', float:'left', marginTop:'5px', marginBottom:'5px'}}>
-            <div class="card-body">
+            return <div className="card" style={{width: '60%', float:'left', marginTop:'5px', marginBottom:'5px'}}>
+            <div className="card-body">
               {message.content}
             </div>
                    </div>
           }else{
           
-         return <div class="card" style={{width: '60%', float:'right', marginTop:'5px', marginBottom:'5px'}}>
-  <div class="card-body">
+         return <div className="card" style={{width: '60%', float:'right', marginTop:'5px', marginBottom:'5px'}}>
+  <div className="card-body">
              {message.content}
   </div>
          </div>

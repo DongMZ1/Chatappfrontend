@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 
-const Sidebareachfriend = ({setroom, room, friendname, setselecteduser, selecteduser, setselectedusermessages}) =>{
+const Sidebareachfriend = ({setroom, room, friendname, setselecteduser, selecteduser, setselectedusermessages, joinroom}) =>{
     const username = useSelector(state => state.loginstate.user.username);
     const selectcurrentfriend = async () =>{
         setselecteduser(friendname);
@@ -22,6 +22,7 @@ const Sidebareachfriend = ({setroom, room, friendname, setselecteduser, selected
         const responsedata = await response.json();
 
         setselectedusermessages(responsedata.history);
+        joinroom();
     }
     return <>
        <button style={{width:'100%'}} onClick={selectcurrentfriend} className="list-group-item d-flex justify-content-between align-items-start">

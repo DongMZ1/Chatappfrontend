@@ -18,11 +18,16 @@ const Homepageafterlogin = () => {
   const [selectedusermessages, setselectedusermessages] = useState([]);
   const dispatch = useDispatch();
   const socket = io("localhost:5000");
+
+  const joinroom = () =>{
+    socket.emit('join_room', room);
+  }
   useEffect(() => {
     socket.on("message", (data) => {
       setmessage(data);
     });
   });
+
 
   return (
     <>
@@ -33,6 +38,7 @@ const Homepageafterlogin = () => {
           <div className="col-2">
 
             <Sidebar
+              joinroom={joinroom}
               selecteduser={selecteduser}
               setselecteduser={setselecteduser}
               setroom={setroom}
