@@ -31,7 +31,6 @@ const Homepageafterlogin = () => {
   const username = useSelector(state => state.loginstate.user.username);
 
   const sendcontenttoserver = async (e) =>{
-    e.preventDefault();
     await socket.emit('message', {
       room: room,
       username: username,
@@ -51,7 +50,7 @@ const Homepageafterlogin = () => {
         content: content
       }]);
     });
-  });
+  }, []);
 
 
   return (
