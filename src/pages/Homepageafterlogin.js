@@ -30,7 +30,8 @@ const Homepageafterlogin = () => {
 
   const username = useSelector(state => state.loginstate.user.username);
 
-  const sendcontenttoserver = async () =>{
+  const sendcontenttoserver = async (e) =>{
+    e.preventDefault();
     await socket.emit('message', {
       room: room,
       username: username,
@@ -73,7 +74,7 @@ const Homepageafterlogin = () => {
           <div className="col-10">
             <Chatcontent selecteduser={selecteduser} selectedusermessages={selectedusermessages} />
             <br />
-            <Fixedfooterinput sendcontenttoserver={sendcontenttoserver} setmessagetosend={setmessagetosend} />
+            <Fixedfooterinput messagetosend={messagetosend} sendcontenttoserver={sendcontenttoserver} setmessagetosend={setmessagetosend} />
           </div>
         </div>
       </div>

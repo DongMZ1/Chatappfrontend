@@ -6,7 +6,6 @@ const Sidebareachfriend = ({setroom, room, friendname, setselecteduser, selected
     const selectcurrentfriend = async () =>{
         setselecteduser(friendname);
         setroom(room);
-        console.log(username);
         //need to init message by fetch
         
         const response = await fetch(

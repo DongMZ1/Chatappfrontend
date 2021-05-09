@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from 'react-bootstrap'
 
-const Fixedfooterinput = ({setmessagetosend, sendcontenttoserver}) =>{
+const Fixedfooterinput = ({setmessagetosend, sendcontenttoserver, messagetosend}) =>{
 
     return <>
       
