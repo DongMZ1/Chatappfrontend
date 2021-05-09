@@ -56,7 +56,14 @@ const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
     setuserfilter(allusers);
   }, [allusers]);
 
-  const filteruserlist = () => {};
+  const filteruserlist = () => {
+    let filtered = allusers.filter( eachuser => {
+      return eachuser.toLowerCase().match(keyword);
+    });
+
+      setuserfilter(filtered);
+    
+  };
   return (
     <>
       <Modal
@@ -75,7 +82,7 @@ const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
                 className="form-control"
                 onChange={(e) => setkeyword(e.target.value)}
               />
-              <button className="btn btn-outline-secondary">
+              <button onClick={filteruserlist} className="btn btn-outline-secondary">
                 Search friend by keyword
               </button>
 
