@@ -6,6 +6,8 @@ import Sidebar from "../components/Sidebar";
 import Fixedfooterinput from "../components/Fixedfooterinput";
 import Chatcontent from "../components/Chatcontent";
 
+
+let socket;
 const Homepageafterlogin = () => {
   const [message, setmessage] = useState();
   /*the room of User.messages.room */
@@ -17,14 +19,36 @@ const Homepageafterlogin = () => {
   /*the message history of user and selected friend */
   const [selectedusermessages, setselectedusermessages] = useState([]);
   const dispatch = useDispatch();
-  const socket = io("localhost:5000");
+  useEffect(()=>{
+    socket = io("localhost:5000");
+  }, []);
+//once the user click the button of sidebar, then  automatically join the room which we set up earlier
 
   const joinroom = () =>{
     socket.emit('join_room', room);
   }
+
+  const username = useSelector(state => state.loginstate.user.username);
+
+  const sendcontenttoserver = async () =>{
+    await socket.emit('message', {
+      room: room,
+      username: username,
+      friendname: selecteduser,
+      content: messagetosend
+    });
+    setselectedusermessages([...selectedusermessages, {
+      whospeak: username,
+      content: messagetosend,
+    }]);
+  }
+
   useEffect(() => {
-    socket.on("message", (data) => {
-      setmessage(data);
+    socket.on("receive_message", ({username, content}) => {
+      setselectedusermessages([...selectedusermessages, {
+        whospeak: username,
+        content: content
+      }]);
     });
   });
 
@@ -49,7 +73,7 @@ const Homepageafterlogin = () => {
           <div className="col-10">
             <Chatcontent selecteduser={selecteduser} selectedusermessages={selectedusermessages} />
             <br />
-            <Fixedfooterinput setmessagetosend={setmessagetosend} />
+            <Fixedfooterinput sendcontenttoserver={sendcontenttoserver} setmessagetosend={setmessagetosend} />
           </div>
         </div>
       </div>

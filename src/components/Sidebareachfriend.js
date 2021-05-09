@@ -22,6 +22,7 @@ const Sidebareachfriend = ({setroom, room, friendname, setselecteduser, selected
         const responsedata = await response.json();
 
         setselectedusermessages(responsedata.history);
+        
         joinroom();
     }
     return <>
