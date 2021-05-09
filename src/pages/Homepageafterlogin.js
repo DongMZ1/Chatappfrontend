@@ -9,7 +9,6 @@ import Chatcontent from "../components/Chatcontent";
 
 let socket;
 const Homepageafterlogin = () => {
-  const [message, setmessage] = useState();
   /*the room of User.messages.room */
   const [room, setroom] = useState();
   /*input box message to send */
@@ -24,8 +23,12 @@ const Homepageafterlogin = () => {
   }, []);
 //once the user click the button of sidebar, then  automatically join the room which we set up earlier
 
-  const joinroom = () =>{
-    socket.emit('join_room', room);
+  const joinroom = (roomnumber) =>{
+    socket.emit('join_room', roomnumber);
+  }
+
+  const leaveroom = () =>{
+    socket.emit('leave_room', room);
   }
 
   const username = useSelector(state => state.loginstate.user.username);
@@ -43,12 +46,21 @@ const Homepageafterlogin = () => {
     }]);
   }
 
+  // socket io on will not refresh component, pass a method to it
+  const receivecontentfromserver = (username, content) =>{
+    setselectedusermessages(state => [...state, {
+      whospeak: username,
+      content: content
+    }]);
+  }
+
   useEffect(() => {
     socket.on("receive_message", ({username, content}) => {
-      setselectedusermessages([...selectedusermessages, {
+      receivecontentfromserver(username, content);
+      console.log(JSON.stringify({
         whospeak: username,
         content: content
-      }]);
+      }));
     });
   }, []);
 
@@ -62,6 +74,7 @@ const Homepageafterlogin = () => {
           <div className="col-2">
 
             <Sidebar
+              leaveroom={leaveroom}
               joinroom={joinroom}
               selecteduser={selecteduser}
               setselecteduser={setselecteduser}

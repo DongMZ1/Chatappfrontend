@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import Addfriend from "../components/Addfriend";
 import Sidebareachfriend from "./Sidebareachfriend";
-const Sidebar = ({setselectedusermessages, setselecteduser, selecteduser, setroom, joinroom }) => {
+const Sidebar = ({setselectedusermessages, setselecteduser, selecteduser, setroom, joinroom, leaveroom }) => {
   const [showaddfriend, setshowaddfriend] = useState(false);
   const dispatch = useDispatch();
   const store = useStore().getState();
@@ -27,6 +27,7 @@ const Sidebar = ({setselectedusermessages, setselecteduser, selecteduser, setroo
         {/**------------------------container-------------------------------- */}
         {store.loginstate.user.messages.map((conversation) => (
           <Sidebareachfriend
+            leaveroom={leaveroom}
             joinroom ={joinroom}
             setselectedusermessages={setselectedusermessages}
             setroom={setroom}

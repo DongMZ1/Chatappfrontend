@@ -16,7 +16,7 @@ const Chatcontent = ({selectedusermessages, selecteduser}) => {
         {/*start of actual content */}
 
         {selectedusermessages.map(message => {
-          if(message.whospeak === selecteduser){
+          if(message.whospeak == selecteduser){
             return <div className="card" style={{width: '60%', float:'left', marginTop:'5px', marginBottom:'5px'}}>
             <div className="card-body">
               {message.content}

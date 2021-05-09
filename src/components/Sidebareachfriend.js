@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 
-const Sidebareachfriend = ({setroom, room, friendname, setselecteduser, selecteduser, setselectedusermessages, joinroom}) =>{
+const Sidebareachfriend = ({setroom, room, friendname, setselecteduser, selecteduser, setselectedusermessages, joinroom, leaveroom}) =>{
     const username = useSelector(state => state.loginstate.user.username);
     const selectcurrentfriend = async () =>{
+      //leave the previous room, then join the current room, since conversation is private, only one room at a time
+        leaveroom();
         setselecteduser(friendname);
         setroom(room);
-        //need to init message by fetch
-        
+        joinroom(room);
+        //init message by fetch
         const response = await fetch(
           'http://localhost:5000/api/user/conversationhistory',{
             method: 'POST',
@@ -21,8 +23,7 @@ const Sidebareachfriend = ({setroom, room, friendname, setselecteduser, selected
         const responsedata = await response.json();
 
         setselectedusermessages(responsedata.history);
-        
-        joinroom();
+
     }
     return <>
        <button style={{width:'100%'}} onClick={selectcurrentfriend} className="list-group-item d-flex justify-content-between align-items-start">
