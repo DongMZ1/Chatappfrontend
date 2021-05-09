@@ -21,8 +21,16 @@ const Sidebar = ({setselectedusermessages, setselecteduser, selecteduser, setroo
       </button>
       <br />
       <br />
+      <button
+        type="button"
+        className="btn btn-outline-secondary"
+      >
+        Manage Friend Request
+      </button>
+      <br />
+      <br />
       <div
-        style={{ height: "600px", overflow: "auto", border: "2px solid blue" }}
+        style={{ height: "500px", overflow: "auto", border: "2px solid blue" }}
       >
         {/**------------------------container-------------------------------- */}
         {store.loginstate.user.messages.map((conversation) => (

@@ -10,6 +10,11 @@ export const loginstate = (state = initstate, action) =>{
                user: action.user,
                islogin: action.islogin
            };
+       case 'fetchuser':
+           return {
+               ...state,
+               user: action.user
+           };    
         default:
                 return {...state};
    }
