@@ -64,12 +64,18 @@ const Homepageafterlogin = () => {
     });
   }, []);
 
-
+  const logout = () =>{
+    dispatch({
+      type:'login',
+      islogin: false,
+      user: null
+    });
+  }
   return (
     <>
       <br />
-      <br />
       <div className="container">
+        <h3>Log in as {username}</h3> <Button onClick={logout} >Log out</Button>
         <div className="row">
           <div className="col-2">
 

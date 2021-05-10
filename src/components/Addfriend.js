@@ -30,7 +30,8 @@ const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
 
 
   //if user try to search, then update all userlist to avoid that some new user appear after loading the component
-  useEffect(async () => {
+  useEffect(() => {
+    const updateuserlist = async () =>{
     const response = await fetch(
       "http://localhost:5000/api/user/possiblefriends",
       {
@@ -46,7 +47,8 @@ const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
 
     const responsedata = await response.json();
     setallusers(responsedata.allusernames);
-
+    };
+    updateuserlist();
   }, []);
 
   //in the first rendering, show all possible user on the screen, 

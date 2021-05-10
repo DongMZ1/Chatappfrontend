@@ -2,16 +2,53 @@ import React, { useState } from "react";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import Addfriend from "../components/Addfriend";
 import Sidebareachfriend from "./Sidebareachfriend";
-const Sidebar = ({setselectedusermessages, setselecteduser, selecteduser, setroom, joinroom, leaveroom }) => {
+import Managefriendrequest from "./Managefriendrequest";
+const Sidebar = ({
+  setselectedusermessages,
+  setselecteduser,
+  selecteduser,
+  setroom,
+  joinroom,
+  leaveroom,
+}) => {
   const [showaddfriend, setshowaddfriend] = useState(false);
+  const [showmanagefriend, setshowmanagefriend] = useState(false);
   const dispatch = useDispatch();
-  const store = useStore().getState();
+  const username = useSelector(state => state.loginstate.user.username);
+  const refreshpage = async () =>{
+
+    const response = await fetch('http://localhost:5000/api/user/login', {
+      method: 'POST',
+      body: JSON.stringify({
+            username
+      }),
+      headers: {'Content-Type': 'application/json'},
+  });
+
+  const responsedata = await response.json();
+  
+  dispatch(
+      {
+          type: 'login',
+          user: responsedata.user,
+          islogin: true
+      }
+  );
+
+  }
+
   return (
     <>
       <Addfriend
         showaddfriend={showaddfriend}
         setshowaddfriend={setshowaddfriend}
       />
+
+      <Managefriendrequest
+        showmanagefriend={showmanagefriend}
+        setshowmanagefriend={setshowmanagefriend}
+      />
+
       <button
         type="button"
         onClick={() => setshowaddfriend(true)}
@@ -19,24 +56,23 @@ const Sidebar = ({setselectedusermessages, setselecteduser, selecteduser, setroo
       >
         Add Friends
       </button>
-      <br />
-      <br />
-      <button
-        type="button"
-        className="btn btn-outline-secondary"
-      >
+      <button onClick={()=>setshowmanagefriend(true)} className="btn btn-outline-secondary">
         Manage Friend Request
       </button>
+      <button
+        onClick={refreshpage}
+        className="btn btn-outline-secondary"
+      >Refresh page</button>
       <br />
       <br />
       <div
         style={{ height: "500px", overflow: "auto", border: "2px solid blue" }}
       >
         {/**------------------------container-------------------------------- */}
-        {store.loginstate.user.messages.map((conversation) => (
+        {useSelector(state => state.loginstate.user.messages).map((conversation) => (
           <Sidebareachfriend
             leaveroom={leaveroom}
-            joinroom ={joinroom}
+            joinroom={joinroom}
             setselectedusermessages={setselectedusermessages}
             setroom={setroom}
             room={conversation.room}
