@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
+  const dispatch = useDispatch();
   const [keyword, setkeyword] = useState();
   const [allusers, setallusers] = useState([]);
   const [userfilter, setuserfilter] = useState([]);

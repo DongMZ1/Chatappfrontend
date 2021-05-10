@@ -29,7 +29,7 @@ const Managefriendrequest = ({showmanagefriend, setshowmanagefriend}) =>{
        
     useState( () =>{
         fetchfriendrequest();
-    }, []
+    }
     );
 
     return <Modal
@@ -38,7 +38,7 @@ const Managefriendrequest = ({showmanagefriend, setshowmanagefriend}) =>{
         onHide={() => setshowmanagefriend(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       > 
-      <Modal.Header><h2>Friend Requests</h2></Modal.Header>
+      <Modal.Header><h2>Friend Requests</h2><Button onClick={fetchfriendrequest}>Refresh</Button></Modal.Header>
           <Modal.Body>
               {/**main content ------------------------------------------ */}
               {
