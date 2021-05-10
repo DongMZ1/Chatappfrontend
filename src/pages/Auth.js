@@ -6,14 +6,19 @@ const Auth = () =>{
     const [formstate, handleonchange] = useForm([]);
     const dispatch = useDispatch();
     const [formerror, formisvalid] = loginvalidator(formstate);
+    const [showserverstart, setshowserverstart] = useState(false);
     const handlelogin = async (e) =>{
         e.preventDefault();
-        const response = await fetch('http://localhost:5000/api/user/login', {
+        setshowserverstart(true);
+        let response
+        while(!response) {
+        response = await fetch('http://localhost:5000/api/user/login', {
             method: 'POST',
             body: JSON.stringify(formstate),
             headers: {'Content-Type': 'application/json'},
         });
-
+      }
+      setshowserverstart(false);
         const responsedata = await response.json();
         
         dispatch(
@@ -41,6 +46,9 @@ const Auth = () =>{
         </div>
         <button onClick={handlelogin} type="submit" style={{marginRight: '5%'}} className="btn btn-primary">Login</button>
       </form>
+             <br />
+             <br />
+             <h2 style={{marginLeft:'20%'}}>{showserverstart && 'server is starting.... please wait a second'}</h2>
 
             </>
         
