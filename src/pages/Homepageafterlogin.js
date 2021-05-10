@@ -19,7 +19,7 @@ const Homepageafterlogin = () => {
   const [selectedusermessages, setselectedusermessages] = useState([]);
   const dispatch = useDispatch();
   useEffect(()=>{
-    socket = io("localhost:5000");
+    socket = io("https://chatappclonebackend.herokuapp.com");
   }, []);
 //once the user click the button of sidebar, then  automatically join the room which we set up earlier
 

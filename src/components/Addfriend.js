@@ -12,7 +12,7 @@ const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
 
   const refreshallusers = async () =>{
     const response = await fetch(
-      "http://localhost:5000/api/user/possiblefriends",
+      "https://chatappclonebackend.herokuapp.com/api/user/possiblefriends",
       {
         method: "POST",
         body: JSON.stringify({
@@ -33,7 +33,7 @@ const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
   useEffect(() => {
     const updateuserlist = async () =>{
     const response = await fetch(
-      "http://localhost:5000/api/user/possiblefriends",
+      "https://chatappclonebackend.herokuapp.com/api/user/possiblefriends",
       {
         method: "POST",
         body: JSON.stringify({
@@ -120,7 +120,7 @@ const Eachusercard = ({eachusername}) =>{
 
   const sendfriendrequest = async () =>{
     const response = await fetch(
-      'http://localhost:5000/api/user/requestfriend', {
+      'https://chatappclonebackend.herokuapp.com/api/user/requestfriend', {
         method:'POST',
         body: JSON.stringify(
           {

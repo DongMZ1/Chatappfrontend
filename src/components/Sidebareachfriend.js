@@ -11,7 +11,7 @@ const Sidebareachfriend = ({setroom, room, friendname, setselecteduser, selected
         joinroom(room);
         //init message by fetch
         const response = await fetch(
-          'http://localhost:5000/api/user/conversationhistory',{
+          'https://chatappclonebackend.herokuapp.com/api/user/conversationhistory',{
             method: 'POST',
             body: JSON.stringify({
               username,

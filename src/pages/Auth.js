@@ -12,7 +12,7 @@ const Auth = () =>{
         setshowserverstart(true);
         let response
         while(!response) {
-        response = await fetch('http://localhost:5000/api/user/login', {
+        response = await fetch('https://chatappclonebackend.herokuapp.com/api/user/login', {
             method: 'POST',
             body: JSON.stringify(formstate),
             headers: {'Content-Type': 'application/json'},
