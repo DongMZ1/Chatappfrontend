@@ -34,6 +34,7 @@ const Homepageafterlogin = () => {
   const username = useSelector(state => state.loginstate.user.username);
 
   const sendcontenttoserver = async (e) =>{
+    e.preventDefault();
     await socket.emit('message', {
       room: room,
       username: username,
@@ -44,6 +45,7 @@ const Homepageafterlogin = () => {
       whospeak: username,
       content: messagetosend,
     }]);
+    setmessagetosend('');
   }
 
   // socket io on will not refresh component, pass a method to it
