@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from "react";
 
 
 const Chatcontent = ({selectedusermessages, selecteduser}) => {
+  //for auto scroll down ref
   const messagesEndRef = useRef();
 
   const scrollToBottom = () => {
@@ -26,7 +27,7 @@ const Chatcontent = ({selectedusermessages, selecteduser}) => {
       >
         {!selecteduser && 'Please select a friend on the left side to start conversation, if you do not have a friend, Please add one'}
         {selecteduser && <>
-        {/*start of actual content */}
+        {/*start of actual content------------------------------------------------------------ */}
 
         {selectedusermessages.map(message => {
           if(message.whospeak == selecteduser){
@@ -51,10 +52,11 @@ const Chatcontent = ({selectedusermessages, selecteduser}) => {
           ;
           }
         } )}
-
+        {/*start auto scroll down effect-------------------------------------- */}
          <div ref={messagesEndRef} />
+         {/*end auto scroll down effect-------------------------------------- */}
 
-        {/*end of actual content */}
+        {/*end of actual content --------------------------------------------------------------------*/}
         </>
         }
       </div>

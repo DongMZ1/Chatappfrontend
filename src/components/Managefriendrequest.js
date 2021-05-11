@@ -25,12 +25,13 @@ const Managefriendrequest = ({showmanagefriend, setshowmanagefriend}) =>{
        });
        };
 
-       //init request to get all user requests and update state on first rendering
+       //init request to get all user requests and update state on first rendering----------------
        
     useState( () =>{
         fetchfriendrequest();
     }
     );
+    //END init request to get all user requests and update state on first rendering----------------
 
     return <Modal
         size="lg"
@@ -40,7 +41,7 @@ const Managefriendrequest = ({showmanagefriend, setshowmanagefriend}) =>{
       > 
       <Modal.Header><h2>Friend Requests</h2><Button onClick={fetchfriendrequest}>Refresh</Button></Modal.Header>
           <Modal.Body>
-              {/**main content ------------------------------------------ */}
+              {/**main content ------------------------------------------------------ */}
               {
                   friendrequestlist.map(eachrequestusername => 
                     <Eachrequest 
@@ -49,7 +50,7 @@ const Managefriendrequest = ({showmanagefriend, setshowmanagefriend}) =>{
                     />
                     )
               }
-              {/**end of main content ------------------------------------------ */}
+              {/**end of main content --------------------------------------------------- */}
           </Modal.Body>
        <Modal.Footer>
           <Button onClick={() => setshowmanagefriend(false)}>Close</Button>
@@ -73,12 +74,14 @@ const Eachrequest = ({eachrequestusername, fetchfriendrequest}) =>{
         });
         await fetchfriendrequest();
     }
+
     return <>
     <div className="card">
     <div className="card-body">
      {eachrequestusername}  <Button onClick={acceptrequest} style={{float:'right'}} >Accept Friend Request</Button>
     </div>
   </div>
+
     </>
 }
 

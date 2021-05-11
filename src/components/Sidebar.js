@@ -49,6 +49,7 @@ const Sidebar = ({
         setshowmanagefriend={setshowmanagefriend}
       />
 
+    {/*start button for open add friends----------------------------------------------------------- */}
       <button
         type="button"
         onClick={() => setshowaddfriend(true)}
@@ -56,9 +57,13 @@ const Sidebar = ({
       >
         Add Friends
       </button>
+      {/*end button for open add friends--------------------------------------------------------------- */}
+
+      {/*start button for Manage Friend Request----------------------------------------------------------- */}
       <button onClick={()=>setshowmanagefriend(true)} className="btn btn-outline-secondary">
         Manage Friend Request
       </button>
+      {/*end button for Manage Friend Request----------------------------------------------------------- */}
       <button
         onClick={refreshpage}
         className="btn btn-outline-secondary"

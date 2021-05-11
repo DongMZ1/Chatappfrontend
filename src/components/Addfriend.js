@@ -51,6 +51,7 @@ const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
     };
     updateuserlist();
   }, []);
+  //end --- if user try to search, then update all userlist to avoid that some new user appear after loading the component
 
   //in the first rendering, show all possible user on the screen, 
   //else if all users changed meaning there are new people register
@@ -59,6 +60,8 @@ const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
     setuserfilter(allusers);
   }, [allusers]);
 
+  //END ---- in the first rendering, show all possible user on the screen, 
+  //else if all users changed meaning there are new people register
   const filteruserlist = () => {
     let filtered = allusers.filter( eachuser => {
       return eachuser.toLowerCase().match(keyword);
