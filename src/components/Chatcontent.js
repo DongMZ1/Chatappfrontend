@@ -5,13 +5,13 @@ const Chatcontent = ({selectedusermessages, selecteduser}) => {
   const messagesEndRef = useRef();
 
   const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
 
   useEffect(() => {
-    if(!selectedusermessages){
-    scrollToBottom()
-    };
+   
+    scrollToBottom();
+    
   }, [selectedusermessages]);
 
   return (
