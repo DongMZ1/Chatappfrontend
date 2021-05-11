@@ -44,7 +44,7 @@ const Auth = () =>{
           { !formisvalid
             && <div id="emailHelp" className="form-text">{formerror.username}</div>}
         </div>
-        <button onClick={handlelogin} type="submit" style={{marginRight: '5%'}} className="btn btn-primary">Login</button>
+        <button disabled={!formisvalid} onClick={handlelogin} type="submit" style={{marginRight: '5%'}} className="btn btn-primary">Login</button>
       </form>
              <br />
              <br />
