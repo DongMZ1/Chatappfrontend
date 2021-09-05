@@ -1,7 +1,7 @@
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 
 
-const Chatcontent = ({selectedusermessages, selecteduser}) => {
+const Chatcontent = ({ selectedusermessages, selecteduser }) => {
   //for auto scroll down ref
   const messagesEndRef = useRef();
 
@@ -10,9 +10,9 @@ const Chatcontent = ({selectedusermessages, selecteduser}) => {
   }
 
   useEffect(() => {
-   
+
     scrollToBottom();
-    
+
   }, [selectedusermessages]);
 
   return (
@@ -27,36 +27,36 @@ const Chatcontent = ({selectedusermessages, selecteduser}) => {
       >
         {!selecteduser && 'Please select a friend on the left side to start conversation, if you do not have a friend, Please add one'}
         {selecteduser && <>
-        {/*start of actual content------------------------------------------------------------ */}
+          {/*start of actual content------------------------------------------------------------ */}
 
-        {selectedusermessages.map(message => {
-          if(message.whospeak == selecteduser){
-            return<div>
-            <div className="card" style={{width: '60%', marginRight:'40%', marginTop:'5px', marginBottom:'5px'}}>
-            <div className="card-body">
-              {message.content}
-            </div>
-                   </div>
-                   <br />
-                   </div> 
-          }else{
-          
-         return <div>
-         <div className="card" style={{width: '60%', marginLeft:'40%', marginTop:'5px', marginBottom:'5px'}}>
-         <div className="card-body">
-           {message.content}
-         </div>
+          {selectedusermessages.map(message => {
+            if (message.whospeak == selecteduser) {
+              return <div>
+                <div className="card" style={{ width: '60%', marginRight: '40%', marginTop: '5px', marginBottom: '5px' }}>
+                  <div className="card-body">
+                    {message.content}
+                  </div>
                 </div>
                 <br />
-                </div>
-          ;
-          }
-        } )}
-        {/*start auto scroll down effect-------------------------------------- */}
-         <div ref={messagesEndRef} />
-         {/*end auto scroll down effect-------------------------------------- */}
+              </div>
+            } else {
 
-        {/*end of actual content --------------------------------------------------------------------*/}
+              return <div>
+                <div className="card" style={{ width: '60%', marginLeft: '40%', marginTop: '5px', marginBottom: '5px' }}>
+                  <div className="card-body">
+                    {message.content}
+                  </div>
+                </div>
+                <br />
+              </div>
+                ;
+            }
+          })}
+          {/*start auto scroll down effect-------------------------------------- */}
+          <div ref={messagesEndRef} />
+          {/*end auto scroll down effect-------------------------------------- */}
+
+          {/*end of actual content --------------------------------------------------------------------*/}
         </>
         }
       </div>

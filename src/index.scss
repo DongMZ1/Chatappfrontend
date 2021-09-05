@@ -1,0 +1,73 @@
+
+.disp-flex {
+    display: flex !important;
+}
+.width-100{
+    width: 100%;
+}
+
+.width-400p {
+    width: 40%;
+}
+
+.width-max-content {
+    width: max-content;
+}
+
+.height-100vh {
+    height: 60vh;
+}
+
+.font-14p {
+    font-size: 14px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.green-color {
+    color: #43A7A7
+}
+
+.red-color {
+    color: red;
+}
+
+.grey-color {
+    color: #929292;
+}
+
+.white-color {
+    color: white;
+}
+
+.green-bg {
+    background-color: #43A7A7;
+}
+
+input ::placeholder {
+    color: #929292;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.width-min-content {
+    width: min-content;
+}
+
+.rounder-border {
+   border-radius: 20px;
+}
+
+input {
+    border: #929292 2px solid;
+    border-radius: 20px;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.75rem;
+    outline: none;
+    width: 400px;
+    color: #43A7A7;
+    font-weight: 600;
+}

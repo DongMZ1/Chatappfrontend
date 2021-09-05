@@ -1,26 +1,26 @@
-import React, {useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
-import {useForm} from '../customhooks/useForm'
-import {loginvalidator} from '../validator/formvalidator'
-const Auth = () =>{
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useForm } from '../customhooks/useForm'
+import { loginvalidator } from '../validator/formvalidator'
+const Auth = () => {
     const [formstate, handleonchange] = useForm([]);
     const dispatch = useDispatch();
     const [formerror, formisvalid] = loginvalidator(formstate);
     const [showserverstart, setshowserverstart] = useState(false);
-    const handlelogin = async (e) =>{
+    const handlelogin = async (e) => {
         e.preventDefault();
         setshowserverstart(true);
         let response
-        while(!response) {
-        response = await fetch('https://chatappclonebackend.herokuapp.com/api/user/login', {
-            method: 'POST',
-            body: JSON.stringify(formstate),
-            headers: {'Content-Type': 'application/json'},
-        });
-      }
-      setshowserverstart(false);
+        while (!response) {
+            response = await fetch('https://chatappclonebackend.herokuapp.com/api/user/login', {
+                method: 'POST',
+                body: JSON.stringify(formstate),
+                headers: { 'Content-Type': 'application/json' },
+            });
+        }
+        setshowserverstart(false);
         const responsedata = await response.json();
-        
+
         dispatch(
             {
                 type: 'login',
@@ -28,32 +28,24 @@ const Auth = () =>{
                 islogin: true,
             }
         );
-        
+
     }
-    return(
-        
-            <>
-            <br />
-            <br />
-            <br />
+    return (
 
-            <form style={{marginLeft:'30%', marginRight:'30%'}}>
-        <div className="mb-3">
-          <label className="form-label">Username</label>
-          <input type="text" name="username" className="form-control" onChange={handleonchange} />
-          { !formisvalid
-            && <div id="emailHelp" className="form-text">{formerror.username}</div>}
+        <div className='disp-flex width-100 height-100vh'>
+            <div className='m-auto'>
+                <div>
+                    <input className='mb-1 font-14p' type="text" name="username" placeholder="User Name" onChange={handleonchange} />
+                    {!formisvalid
+                        && <div id="emailHelp" className="font-14p ms-2 mb-1 bold red-color">{formerror.username}</div>}
+                </div>
+                <div className='width-min-content font-14p bold disp-flex white-color green-bg rounder-border py-1 px-2' disabled={!formisvalid} onClick={handlelogin} type="submit"><div className='m-auto'>Login</div></div>
+                <div className='font-14p green-color'>{showserverstart && 'server is loading'}</div>
+            </div>
         </div>
-        <button disabled={!formisvalid} onClick={handlelogin} type="submit" style={{marginRight: '5%'}} className="btn btn-primary">Login</button>
-      </form>
-             <br />
-             <br />
-             <h2 style={{marginLeft:'20%'}}>{showserverstart && 'server is starting.... please wait a second'}</h2>
 
-            </>
-        
     )
-    
+
 }
 
 export default Auth;
