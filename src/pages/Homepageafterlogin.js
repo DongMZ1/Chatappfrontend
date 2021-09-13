@@ -77,9 +77,11 @@ const Homepageafterlogin = () => {
     <>
       <br />
       <div className="container">
-        <h3>Log in as {username}</h3> <Button onClick={logout} >Log out</Button>
+        <div className='disp-flex space-between mb-4'>
+        <div className='font-16p bold green-color'>Log in as {username}</div> <div className='font-16p bold white-color green-bg rounder-border cursor-pointer py-1 px-2' onClick={logout} >Log out</div>
+        </div>
         <div className="row">
-          <div className="col-2">
+          <div className="col-3">
 
             <Sidebar
               leaveroom={leaveroom}
@@ -91,7 +93,7 @@ const Homepageafterlogin = () => {
             />
 
           </div>
-          <div className="col-10">
+          <div className="col-9">
             <Chatcontent selecteduser={selecteduser} selectedusermessages={selectedusermessages} />
             <br />
             <Fixedfooterinput messagetosend={messagetosend} sendcontenttoserver={sendcontenttoserver} setmessagetosend={setmessagetosend} />

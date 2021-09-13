@@ -39,8 +39,10 @@ const Auth = () => {
                     {!formisvalid
                         && <div id="emailHelp" className="font-14p ms-2 mb-1 bold red-color">{formerror.username}</div>}
                 </div>
-                <div className='width-min-content font-14p bold disp-flex white-color green-bg rounder-border py-1 px-2' disabled={!formisvalid} onClick={handlelogin} type="submit"><div className='m-auto'>Login</div></div>
-                <div className='font-14p green-color'>{showserverstart && 'server is loading'}</div>
+                <div className='disp-flex space-between'>
+                    <div className={`${formisvalid ? 'cursor-pointer':'opacity-0-4'} user-select-none width-min-content font-14p bold disp-flex white-color green-bg rounder-border py-1 px-2`} onClick={formisvalid && handlelogin}><div className='m-auto'>Login</div></div>
+                    <div className='font-14p bold disp-flex green-color'><div className='m-auto'>{showserverstart && 'server is loading'}</div></div>
+                </div>
             </div>
         </div>
 

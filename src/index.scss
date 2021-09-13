@@ -60,6 +60,19 @@ input ::placeholder {
    border-radius: 20px;
 }
 
+.green-border {
+    border: #43A7A7 2px solid;
+}
+
+.green-border-bottom {
+    border-bottom: #43A7A7 2px solid;
+}
+
+.font-12p {
+    font-size: 12px;
+}
+
+
 input {
     border: #929292 2px solid;
     border-radius: 20px;
@@ -70,4 +83,24 @@ input {
     width: 400px;
     color: #43A7A7;
     font-weight: 600;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.opacity-0-4 {
+    opacity: 0.4;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.user-select-none {
+    user-select: none;
+}
+
+.font-16p {
+    font-size: 16px;
 }

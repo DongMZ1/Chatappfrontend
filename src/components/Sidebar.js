@@ -3,6 +3,7 @@ import { useSelector, useDispatch, useStore } from "react-redux";
 import Addfriend from "../components/Addfriend";
 import Sidebareachfriend from "./Sidebareachfriend";
 import Managefriendrequest from "./Managefriendrequest";
+import useInterval from 'use-interval'
 const Sidebar = ({
   setselectedusermessages,
   setselecteduser,
@@ -15,27 +16,33 @@ const Sidebar = ({
   const [showmanagefriend, setshowmanagefriend] = useState(false);
   const dispatch = useDispatch();
   const username = useSelector(state => state.loginstate.user.username);
-  const refreshpage = async () =>{
+  const refreshpage = async () => {
 
     const response = await fetch('https://chatappclonebackend.herokuapp.com/api/user/login', {
       method: 'POST',
       body: JSON.stringify({
-            username
+        username
       }),
-      headers: {'Content-Type': 'application/json'},
-  });
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-  const responsedata = await response.json();
-  
-  dispatch(
+    const responsedata = await response.json();
+
+    dispatch(
       {
-          type: 'login',
-          user: responsedata.user,
-          islogin: true
+        type: 'login',
+        user: responsedata.user,
+        islogin: true
       }
-  );
+    );
 
   }
+
+  useInterval(
+    () => {
+      refreshpage()
+    }, [10000]
+  )
 
   return (
     <>
@@ -43,37 +50,24 @@ const Sidebar = ({
         showaddfriend={showaddfriend}
         setshowaddfriend={setshowaddfriend}
       />
-
       <Managefriendrequest
         showmanagefriend={showmanagefriend}
         setshowmanagefriend={setshowmanagefriend}
       />
-
-    {/*start button for open add friends----------------------------------------------------------- */}
-      <button
+      <div className='disp-flex'>
+      <div
         type="button"
         onClick={() => setshowaddfriend(true)}
-        className="btn btn-outline-secondary"
+        className="font-12p disp-flex bold px-2 py-1 green-color rounder-border green-border cursor-pointer"
       >
-        Add Friends
-      </button>
-      {/*end button for open add friends--------------------------------------------------------------- */}
-
-      {/*start button for Manage Friend Request----------------------------------------------------------- */}
-      <button onClick={()=>setshowmanagefriend(true)} className="btn btn-outline-secondary">
-        Manage Friend Request
-      </button>
-      {/*end button for Manage Friend Request----------------------------------------------------------- */}
-      <button
-        onClick={refreshpage}
-        className="btn btn-outline-secondary"
-      >Refresh page</button>
-      <br />
-      <br />
+        <div className='m-auto'>Add Friends</div>
+      </div>
+      <div onClick={() => setshowmanagefriend(true)} className="font-12p disp-flex px-2 py-1 bold green-color rounder-border green-border cursor-pointer">
+        <div className='m-auto'>Manage Friend Request</div>
+      </div>
+      </div>
       <div
-        style={{ height: "500px", overflow: "auto", border: "2px solid blue" }}
       >
-        {/**------------------------container-------------------------------- */}
         {useSelector(state => state.loginstate.user.messages).map((conversation) => (
           <Sidebareachfriend
             leaveroom={leaveroom}
@@ -86,8 +80,6 @@ const Sidebar = ({
             friendname={conversation.friend}
           />
         ))}
-
-        {/**------------------------end of container-------------------------------- */}
       </div>
     </>
   );
