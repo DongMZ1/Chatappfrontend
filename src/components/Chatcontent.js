@@ -18,37 +18,30 @@ const Chatcontent = ({ selectedusermessages, selecteduser }) => {
   return (
     <>
       <div
-        style={{
-          height: "450px",
-          overflow: "auto",
-          border: "8px solid blue",
-          padding: "5%",
-        }}
+       className='height-60 overflow-auto green-border round-border p-3' id='chat-box'
       >
         {!selecteduser && 'Please select a friend on the left side to start conversation, if you do not have a friend, Please add one'}
         {selecteduser && <>
           {/*start of actual content------------------------------------------------------------ */}
 
           {selectedusermessages.map(message => {
+            if(!message.content){
+                return null;
+            }
             if (message.whospeak == selecteduser) {
-              return <div>
-                <div className="card" style={{ width: '60%', marginRight: '40%', marginTop: '5px', marginBottom: '5px' }}>
-                  <div className="card-body">
+              return <div className="disp-flex my-1">
+                  <div className='green-border width-50-max px-2 py-0-5 rounder-border font-14p green-color'>
                     {message.content}
                   </div>
                 </div>
-                <br />
-              </div>
+              
             } else {
 
-              return <div>
-                <div className="card" style={{ width: '60%', marginLeft: '40%', marginTop: '5px', marginBottom: '5px' }}>
-                  <div className="card-body">
+              return <div className="disp-flex my-1">
+                  <div className='green-border ms-auto width-50-max px-2 py-0-5 rounder-border font-14p green-color'>
                     {message.content}
                   </div>
                 </div>
-                <br />
-              </div>
                 ;
             }
           })}

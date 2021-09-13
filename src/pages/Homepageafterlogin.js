@@ -1,5 +1,6 @@
 import react, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {Row, Col} from 'react-bootstrap';
 import { io } from "socket.io-client";
 import { Button } from "react-bootstrap";
 import Sidebar from "../components/Sidebar";
@@ -80,8 +81,8 @@ const Homepageafterlogin = () => {
         <div className='disp-flex space-between mb-4'>
         <div className='font-16p bold green-color'>Log in as {username}</div> <div className='font-16p bold white-color green-bg rounder-border cursor-pointer py-1 px-2' onClick={logout} >Log out</div>
         </div>
-        <div className="row">
-          <div className="col-3">
+        <Row>
+          <Col xl={3}>
 
             <Sidebar
               leaveroom={leaveroom}
@@ -92,13 +93,13 @@ const Homepageafterlogin = () => {
               setselectedusermessages={setselectedusermessages}
             />
 
-          </div>
-          <div className="col-9">
+          </Col>
+          <Col xl={9}>
             <Chatcontent selecteduser={selecteduser} selectedusermessages={selectedusermessages} />
             <br />
             <Fixedfooterinput messagetosend={messagetosend} sendcontenttoserver={sendcontenttoserver} setmessagetosend={setmessagetosend} />
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     </>
   );

@@ -1,106 +1,133 @@
-
 .disp-flex {
-    display: flex !important;
+  display: flex !important;
 }
-.width-100{
-    width: 100%;
+.width-100 {
+  width: 100%;
 }
 
 .width-400p {
-    width: 40%;
+  width: 40%;
 }
 
 .width-max-content {
-    width: max-content;
+  width: max-content;
 }
 
 .height-100vh {
-    height: 60vh;
+  height: 60vh;
 }
 
 .font-14p {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .bold {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .green-color {
-    color: #43A7A7
+  color: #43a7a7;
 }
 
 .red-color {
-    color: red;
+  color: red;
 }
 
 .grey-color {
-    color: #929292;
+  color: #929292;
 }
 
 .white-color {
-    color: white;
+  color: white;
 }
 
 .green-bg {
-    background-color: #43A7A7;
+  background-color: #43a7a7;
 }
 
 input ::placeholder {
-    color: #929292;
-    font-size: 14px;
-    font-weight: 700;
+  color: #929292;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .width-min-content {
-    width: min-content;
+  width: min-content;
 }
 
 .rounder-border {
-   border-radius: 20px;
+  border-radius: 20px;
 }
 
 .green-border {
-    border: #43A7A7 2px solid;
+  border: #43a7a7 2px solid;
 }
 
+#chat-box::-webkit-scrollbar {
+    width: 10px;
+}
+
+.round-border {
+    border-radius: 10px;
+}
+
+.py-0-5 {
+    padding-top: 0.1rem !important;
+    padding-bottom: 0.1rem !important;
+}
+
+.width-50-max {
+    max-width: 50%;
+}
+#chat-box::-webkit-scrollbar-thumb {
+    background: #43a7a7;
+    border-radius: 20px;
+}
+
+#chat-box::-webkit-scrollbar-track {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .green-border-bottom {
-    border-bottom: #43A7A7 2px solid;
+  border-bottom: #43a7a7 2px solid;
 }
 
 .font-12p {
-    font-size: 12px;
+  font-size: 12px;
 }
 
+.height-60 {
+  height: 60vh;
+}
 
 input {
-    border: #929292 2px solid;
-    border-radius: 20px;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    padding-left: 0.75rem;
-    outline: none;
-    width: 400px;
-    color: #43A7A7;
-    font-weight: 600;
+  border: #929292 2px solid;
+  border-radius: 20px;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.75rem;
+  outline: none;
+  width: 400px;
+  color: #43a7a7;
+  font-weight: 600;
 }
 
 .space-between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .opacity-0-4 {
-    opacity: 0.4;
+  opacity: 0.4;
 }
 
-.cursor-pointer{
-    cursor: pointer;
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .user-select-none {
-    user-select: none;
+  user-select: none;
 }
 
 .font-16p {
-    font-size: 16px;
+  font-size: 16px;
 }
