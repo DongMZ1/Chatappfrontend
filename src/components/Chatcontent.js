@@ -20,7 +20,7 @@ const Chatcontent = ({ selectedusermessages, selecteduser }) => {
       <div
        className='height-60 overflow-auto green-border round-border p-3' id='chat-box'
       >
-        {!selecteduser && 'Please select a friend on the left side to start conversation, if you do not have a friend, Please add one'}
+        {!selecteduser && <div className='green-color bold font-14p'>Please select a friend on the left side to start conversation, if you do not have a friend, Please add one</div>}
         {selecteduser && <>
           {/*start of actual content------------------------------------------------------------ */}
 

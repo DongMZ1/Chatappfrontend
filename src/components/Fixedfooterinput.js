@@ -3,9 +3,9 @@ import { Button } from 'react-bootstrap'
 
 const Fixedfooterinput = ({ setmessagetosend, sendcontenttoserver, messagetosend }) => {
   return <>
-    <form className="input-group mb-3" >
-      <input value={messagetosend} type="text" className="form-control" onChange={(e) => setmessagetosend(e.target.value)} />
-      <Button type='submit' onClick={(e) => sendcontenttoserver(e)}>Send Message</Button>
+    <form className="disp-flex" >
+      <input className='font-14p' value={messagetosend} type="text" onChange={(e) => setmessagetosend(e.target.value)} />
+      <button className='white-bg green-border rounder-border font-14p green-color bold' type='submit' onClick={(e) => sendcontenttoserver(e)}>Send Message</button>
     </form>
   </>
 }
