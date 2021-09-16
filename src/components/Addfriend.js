@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import useInterval from "use-interval";
 
 
 
@@ -28,6 +29,10 @@ const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
     const responsedata = await response.json();
     setallusers(responsedata.allusernames);
   }
+
+  useInterval(
+    () => refreshallusers(), 10000
+  );
 
 
   //if user try to search, then update all userlist to avoid that some new user appear after loading the component
@@ -62,9 +67,9 @@ const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
 
   //END ---- in the first rendering, show all possible user on the screen, 
   //else if all users changed meaning there are new people register
-  const filteruserlist = () => {
+  const filteruserlist = (e) => {
     let filtered = allusers.filter(eachuser => {
-      return eachuser.toLowerCase().match(keyword);
+      return eachuser.toLowerCase().match(e.target.value);
     });
 
     setuserfilter(filtered);
@@ -76,44 +81,30 @@ const Addfriend = ({ showaddfriend, setshowaddfriend }) => {
         size="lg"
         show={showaddfriend}
         onHide={() => setshowaddfriend(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
+        className='rounder-border'
       >
-        <Modal.Header>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            <div class="input-group mb-3">
-              {/*search bar to filter the user we want ----------------------------------*/}
-
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => setkeyword(e.target.value)}
-              />
-              <button onClick={filteruserlist} className="btn btn-outline-secondary">
-                Search friend by keyword
-              </button>
-
-              <button onClick={refreshallusers} className="btn btn-outline-secondary">
-                Refresh
-              </button>
-
-              {/*end of search bar to filter the user we want-------------------------------- */}
-            </div>
-          </Modal.Title>
-        </Modal.Header>
         <Modal.Body>
-          {/**render each user------------------------------- */}
-
-          {userfilter.map(eachusername => {
-            return <Eachusercard eachusername={eachusername} />
-              ;
-          }
-          )}
-
-          {/**end of render each user------------------------------------------ */}
+          <div className='disp-flex space-between mb-3'>
+            <input
+              type="text"
+              className='font-14p'
+              placeholder="Search"
+              onChange={(e) => filteruserlist(e)}
+            />
+            <div onClick={() => setshowaddfriend(false)} className='user-select-none cursor-pointer green-bg disp-flex rounder-border white-color font-14p px-3 bold'>
+              <div className='m-auto'>
+                Close
+              </div>
+            </div>
+          </div>
+          <div className='height-80vh overflow-auto pt-1'>
+            {userfilter.map(eachusername => {
+              return <Eachusercard eachusername={eachusername} />
+                ;
+            }
+            )}
+          </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setshowaddfriend(false)}>Close</Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
@@ -150,18 +141,13 @@ const Eachusercard = ({ eachusername }) => {
       setmessage(responsedata.message)
     }
   }
-  return <>
-    <div className="card">
-      <div className="card-body">
-        {eachusername} <Button style={{ float: 'right' }} onClick={sendfriendrequest}>Send Friend Request</Button>
-        {show && <>
-          <br />
+  return <div className='mb-3 green-border-bottom'>
+        <div className='disp-flex space-between'><div className='font-14p green-color bold'>{eachusername}</div> <div className='green-border font-12p py-1 bold white-bg px-2 green-color rounder-border cursor-pointer user-select-none' onClick={sendfriendrequest}>Send Friend Request</div></div>
+        {show && <div className='font-12p red-color bold'>
           {message}
-        </>
+        </div>
         }
-      </div>
     </div>
-  </>
 }
 
 export default Addfriend;

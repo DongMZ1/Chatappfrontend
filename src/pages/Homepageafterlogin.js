@@ -1,6 +1,6 @@
 import react, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {Row, Col} from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { io } from "socket.io-client";
 import { Button } from "react-bootstrap";
 import Sidebar from "../components/Sidebar";
@@ -19,38 +19,40 @@ const Homepageafterlogin = () => {
   /*the message history of user and selected friend */
   const [selectedusermessages, setselectedusermessages] = useState([]);
   const dispatch = useDispatch();
-  useEffect(()=>{
+  useEffect(() => {
     socket = io("https://chatappclonebackend.herokuapp.com");
   }, []);
-//once the user click the button of sidebar, then  automatically join the room which we set up earlier
+  //once the user click the button of sidebar, then  automatically join the room which we set up earlier
 
-  const joinroom = (roomnumber) =>{
+  const joinroom = (roomnumber) => {
     socket.emit('join_room', roomnumber);
   }
 
-  const leaveroom = () =>{
+  const leaveroom = () => {
     socket.emit('leave_room', room);
   }
 
   const username = useSelector(state => state.loginstate.user.username);
 
-  const sendcontenttoserver = async (e) =>{
+  const sendcontenttoserver = async (e) => {
     e.preventDefault();
-    await socket.emit('message', {
-      room: room,
-      username: username,
-      friendname: selecteduser,
-      content: messagetosend
-    });
-    setselectedusermessages([...selectedusermessages, {
-      whospeak: username,
-      content: messagetosend,
-    }]);
-    setmessagetosend('');
+    if (messagetosend) {
+      await socket.emit('message', {
+        room: room,
+        username: username,
+        friendname: selecteduser,
+        content: messagetosend
+      });
+      setselectedusermessages([...selectedusermessages, {
+        whospeak: username,
+        content: messagetosend,
+      }]);
+      setmessagetosend('');
+    }
   }
 
   // socket io on will not refresh component, pass a method to it
-  const receivecontentfromserver = (username, content) =>{
+  const receivecontentfromserver = (username, content) => {
     setselectedusermessages(state => [...state, {
       whospeak: username,
       content: content
@@ -58,7 +60,7 @@ const Homepageafterlogin = () => {
   }
 
   useEffect(() => {
-    socket.on("receive_message", ({username, content}) => {
+    socket.on("receive_message", ({ username, content }) => {
       receivecontentfromserver(username, content);
       console.log(JSON.stringify({
         whospeak: username,
@@ -67,9 +69,9 @@ const Homepageafterlogin = () => {
     });
   }, []);
 
-  const logout = () =>{
+  const logout = () => {
     dispatch({
-      type:'login',
+      type: 'login',
       islogin: false,
       user: null
     });
@@ -79,7 +81,7 @@ const Homepageafterlogin = () => {
       <br />
       <div className="container">
         <div className='disp-flex space-between mb-4'>
-        <div className='font-16p bold green-color'>Log in as {username}</div> <div className='font-16p bold white-color green-bg rounder-border cursor-pointer py-1 px-2' onClick={logout} >Log out</div>
+          <div className='font-16p bold green-color'>Log in as {username}</div> <div className='font-16p bold white-color green-bg rounder-border cursor-pointer py-1 px-2' onClick={logout} >Log out</div>
         </div>
         <Row>
           <Col xl={3}>

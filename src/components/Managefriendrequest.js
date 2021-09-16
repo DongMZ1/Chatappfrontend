@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux'
-import {Modal, Button} from 'react-bootstrap'
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import useInterval from 'use-interval';
+import { Modal, Button } from 'react-bootstrap'
 
-const Managefriendrequest = ({showmanagefriend, setshowmanagefriend}) =>{
+const Managefriendrequest = ({ showmanagefriend, setshowmanagefriend }) => {
     const dispatch = useDispatch();
     const [friendrequestlist, setfriendrequestlist] = useState([]);
     const username = useSelector(state => state.loginstate.user.username);
 
-    const fetchfriendrequest = async () =>{
+    const fetchfriendrequest = async () => {
         const response = await fetch('https://chatappclonebackend.herokuapp.com/api/user/login', {
             method: 'POST',
             body: JSON.stringify({
@@ -15,72 +16,76 @@ const Managefriendrequest = ({showmanagefriend, setshowmanagefriend}) =>{
             }),
             headers: {
                 'Content-Type': 'application/json'
-            } 
+            }
         });
         const responsedata = await response.json();
         setfriendrequestlist(responsedata.user.friendrequest);
         dispatch({
             type: 'fetchuser',
             user: responsedata.user
-       });
-       };
+        });
+    };
 
-       //init request to get all user requests and update state on first rendering----------------
-       
-    useState( () =>{
-        fetchfriendrequest();
-    }
-    );
-    //END init request to get all user requests and update state on first rendering----------------
+    useInterval(
+        () => {
+            fetchfriendrequest();
+        }, 5000
+    )
 
     return <Modal
         size="lg"
         show={showmanagefriend}
         onHide={() => setshowmanagefriend(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
-      > 
-      <Modal.Header><h2>Friend Requests</h2><Button onClick={fetchfriendrequest}>Refresh</Button></Modal.Header>
-          <Modal.Body>
-              {/**main content ------------------------------------------------------ */}
-              {
-                  friendrequestlist.map(eachrequestusername => 
-                    <Eachrequest 
-                    eachrequestusername={eachrequestusername}
-                    fetchfriendrequest={fetchfriendrequest}
+    >
+        <Modal.Body>
+            <div className='disp-flex space-between mb-3'>
+                <div className='font-14p px-2 py-1 bold green-color'>
+                    Friend Request List
+                </div>
+                <div onClick={() => setshowmanagefriend(false)} className='user-select-none cursor-pointer green-bg disp-flex rounder-border white-color font-14p px-3 bold'>
+                    <div className='m-auto'>
+                        Close
+                    </div>
+                </div>
+            </div>
+            <div className='height-80vh overflow-auto pt-1'>
+            {
+                friendrequestlist.map(eachrequestusername =>
+                    <Eachrequest
+                        eachrequestusername={eachrequestusername}
+                        fetchfriendrequest={fetchfriendrequest}
                     />
-                    )
-              }
-              {/**end of main content --------------------------------------------------- */}
-          </Modal.Body>
-       <Modal.Footer>
-          <Button onClick={() => setshowmanagefriend(false)}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    
+                )
+            }
+            </div>
+            {/**end of main content --------------------------------------------------- */}
+        </Modal.Body>
+    </Modal>
+
 }
 
-const Eachrequest = ({eachrequestusername, fetchfriendrequest}) =>{
+const Eachrequest = ({ eachrequestusername, fetchfriendrequest }) => {
     const username = useSelector(state => state.loginstate.user.username);
-    const acceptrequest = async () =>{
+    const acceptrequest = async () => {
         const response = await fetch('https://chatappclonebackend.herokuapp.com/api/user/addfriend', {
             method: 'POST',
             body: JSON.stringify({
                 username,
                 friendname: eachrequestusername
             }),
-            headers:{
-                'Content-Type' : 'application/json'
+            headers: {
+                'Content-Type': 'application/json'
             }
         });
         await fetchfriendrequest();
     }
 
     return <>
-    <div className="card">
-    <div className="card-body">
-     {eachrequestusername}  <Button onClick={acceptrequest} style={{float:'right'}} >Accept Friend Request</Button>
-    </div>
-  </div>
+        <div className="mb-3 green-border-bottom disp-flex space-between">
+                    <div className='font-14p green-color bold'>{eachrequestusername}</div> 
+                    <div className='green-border font-12p bold py-1 white-bg px-2 green-color rounder-border cursor-pointer user-select-none' onClick={acceptrequest} >Accept Friend Request</div>
+            
+        </div>
 
     </>
 }
